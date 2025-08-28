@@ -1,1 +1,77 @@
-<p>becoming github news site...</p>
+import { useState } from "react";
+
+export default function NextViewNews() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const news = [
+    {
+      title: "Nieuwe technologie verandert de wereld",
+      description: "Wetenschappers hebben een doorbraak bereikt in AI die alles kan veranderen.",
+      date: "28 augustus 2025",
+    },
+    {
+      title: "Sportupdate: Spannende finale",
+      description: "Het kampioenschap eindigde in een zenuwslopende penaltyserie.",
+      date: "27 augustus 2025",
+    },
+    {
+      title: "Weerbericht: Zonnig weekend",
+      description: "Het wordt een stralend en warm weekend, perfect voor buitenactiviteiten.",
+      date: "26 augustus 2025",
+    },
+  ];
+
+  return (
+    <div
+      className={`min-h-screen p-6 transition-colors duration-300 relative ${
+        darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
+      }`}
+    >
+      <header className="mb-8 text-center">
+        <h1 className="text-4xl font-bold text-blue-600">NextViewNews</h1>
+        <p className="text-gray-600 dark:text-gray-300">
+          Het laatste nieuws op één plek
+        </p>
+      </header>
+
+      <main className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {news.map((item, index) => (
+          <article
+            key={index}
+            className={`p-6 rounded-2xl shadow-md hover:shadow-lg transition ${
+              darkMode ? "bg-gray-800" : "bg-white"
+            }`}
+          >
+            <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
+            <p className="mb-4 text-gray-700 dark:text-gray-300">
+              {item.description}
+            </p>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              {item.date}
+            </span>
+          </article>
+        ))}
+      </main>
+
+      <footer className="mt-12 text-center text-gray-500 dark:text-gray-400 text-sm">
+        © 2025 NextViewNews - Alle rechten voorbehouden
+      </footer>
+
+      {/* Dark/Light Mode Knop linksonder */}
+      <button
+        onClick={() => setDarkMode(!darkMode)}
+        className="fixed bottom-4 left-4 w-12 h-12 rounded-full shadow-md focus:outline-none"
+      >
+        <img
+          src={
+            darkMode
+              ? "https://nextviewnews.github.io/lightmodeswitch.png"
+              : "https://nextviewnews.github.io/darkmodeswitch.png"
+          }
+          alt="Toggle Dark Mode"
+          className="w-full h-full object-contain"
+        />
+      </button>
+    </div>
+  );
+}
